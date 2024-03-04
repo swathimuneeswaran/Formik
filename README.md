@@ -1,8 +1,4 @@
-# React + Vite
+![Screenshot (58)](https://github.com/swathimuneeswaran/Formik/assets/113039047/9b340b6a-c3cf-437d-8035-269537ece069)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+THIS WEBSITE IS BUILD USING REACT JS .I HAVE USED FORMIK TO VALIDATE THE FORM 
