@@ -1,8 +1,11 @@
-import {useState} from "react";
-import "./style.css";
+// PageThree.js
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import Popup from "./Popup";
 import { Link } from "react-router-dom";
+
+import "./style.css";
+import BookContext from "../context/TableContext";
 
 const validate = values => {
   const errors = {};
@@ -47,8 +50,8 @@ const validate = values => {
 };
 
 function PageThree() {
-
-  const [bool,setBool]=useState(0);
+  const [bool, setBool] = useState(false);
+  const { addBook } = useContext(BookContext);
 
   const formik = useFormik({
     initialValues: {
@@ -60,23 +63,25 @@ function PageThree() {
       biography: "",
     },
     validate,
-    onSubmit:(values,{resetForm})=>{
-     if(bool){
-      setBool(0);
-      resetForm({values:''});
-     }else{
-      setBool(1);
-      console.log(values);
-     }
-    } 
+    onSubmit: (values, { resetForm }) => {
+      addBook({
+        id: Date.now(),
+        name: values.bookname,
+        author: values.authorname,
+        publication: values.year,
+        isbn: values.isbnnumber,
+        img: "https://via.placeholder.com/150", // Placeholder image
+      });
+      setBool(true);
+      resetForm();
+    }
   });
-
-  console.log(formik.values);
 
   return (
     <>
       <div className="container two">
-        <div className="bookform">
+      <button className="home_but"><Link to="/books" className="back_home"><i class='bx bx-chevron-left' style={{fontSize:"25px",padding:"9px"}}></i>Books</Link></button>
+        <div className="bookform" >
           <h2>Book Details form</h2>
           <form onSubmit={formik.handleSubmit}>
             <input
@@ -87,8 +92,8 @@ function PageThree() {
               onChange={formik.handleChange}
               value={formik.values.bookname}
               onBlur={formik.handleBlur}
-            ></input>
-            { formik.touched.bookname && formik.errors.bookname ? (
+            />
+            {formik.touched.bookname && formik.errors.bookname ? (
               <span>{formik.errors.bookname}</span>
             ) : null}
 
@@ -100,7 +105,7 @@ function PageThree() {
               onChange={formik.handleChange}
               value={formik.values.year}
               onBlur={formik.handleBlur}
-            ></input>
+            />
             {formik.touched.year && formik.errors.year ? <span>{formik.errors.year}</span> : null}
 
             <input
@@ -111,8 +116,8 @@ function PageThree() {
               onChange={formik.handleChange}
               value={formik.values.isbnnumber}
               onBlur={formik.handleBlur}
-            ></input>
-            {formik.touched.isbnnumber &&formik.errors.isbnnumber ? (
+            />
+            {formik.touched.isbnnumber && formik.errors.isbnnumber ? (
               <span>{formik.errors.isbnnumber}</span>
             ) : null}
 
@@ -124,7 +129,7 @@ function PageThree() {
               onChange={formik.handleChange}
               value={formik.values.authorname}
               onBlur={formik.handleBlur}
-            ></input>
+            />
             {formik.touched.authorname && formik.errors.authorname ? (
               <span>{formik.errors.authorname}</span>
             ) : null}
@@ -137,7 +142,7 @@ function PageThree() {
               onChange={formik.handleChange}
               value={formik.values.dateofbirth}
               onBlur={formik.handleBlur}
-            ></input>
+            />
             {formik.touched.dateofbirth && formik.errors.dateofbirth ? (
               <span>{formik.errors.dateofbirth}</span>
             ) : null}
@@ -150,20 +155,18 @@ function PageThree() {
               onChange={formik.handleChange}
               value={formik.values.biography}
               onBlur={formik.handleBlur}
-            ></input>
+            />
             {formik.touched.biography && formik.errors.biography ? (
               <span>{formik.errors.biography}</span>
             ) : null}
 
-            <input type="submit"></input>
+            <input type="submit" />
           </form>
         </div>
         <div className="message-box">
-          {
-            bool?(<Popup onClick={formik.handleSubmit}/>):null
-          }
+          {bool ? <Popup onClick={() => setBool(false)} /> : null}
         </div>
-        <Link to="/" className="back_home">Back to Home</Link>
+       
       </div>
     </>
   );

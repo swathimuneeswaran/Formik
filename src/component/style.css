@@ -108,20 +108,20 @@
 
 .tab {
   border-collapse: collapse;
-  width: 100%;
-  background-image: linear-gradient(
-    to right,
-    rgb(200, 198, 198),
-    white,
-    rgb(151, 146, 146)
-  );
-  margin-top: 30px;
+  width: 70%;
+  background-color:transparent;
+  backdrop-filter: blur(30px);
+ 
+
   margin-bottom: 50px;
+  color:white;
+
 }
 
 .tab th,
 .tab td {
-  border: 1px solid black;
+  border: 2px solid white;
+  
   padding: 18px;
 }
 
@@ -135,20 +135,31 @@
   max-width: 450px;
   border-radius: 20px;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: transparent;
+  backdrop-filter:blur(20px);
   box-sizing: border-box;
   padding: 40px;
-  color: white;
+  color: white!important;
   margin-top: 100px;
+  
+}
+
+form{
+padding-top: 40px !important;
 }
 
 .bookform h2 {
   text-align: center;
 }
 
+form ::placeholder{
+  color:blanchedalmond;
+}
+
 .two {
-  background-color: indigo;
+  background-image:url("https://i.pinimg.com/736x/fc/df/12/fcdf12ab3c0e48d7908ffc9a78fe5c93.jpg");
   font-family: Arial, Helvetica, sans-serif;
+  padding-top: 50px;
 }
 
 input[type="text"],
@@ -255,11 +266,25 @@ span {
  .back_home
  {
     text-decoration: none;
+   
     color:black;
-    border:1px solid white;
+   
    font-weight: bolder;
    font-style: italic;
    cursor: pointer;
-   background-color: whitesmoke;
-   border-radius: 5px;
+  
+   
+ }
+
+ .home_but{
+  width:100px;
+  height: 80px;
+ border-radius: 15px;
+  border: 1px solid rgb(205, 197, 197);
+  margin-left: 40px;
+ }
+
+ .home_but:hover{
+  background-color: rgb(205, 197, 197);
+  opacity: 1;
  }
